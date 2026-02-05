@@ -20,7 +20,13 @@ app.use('/uploads', express.static('uploads'));
 //!A simple Route for getting all books
 app.get('/api/books', async (req,res)=>{
     try{
-        const books= await Books.find();
+        const category= req.query.category;
+        
+        const filter={};
+        if(category){
+            filter.category= category;
+        }
+        const books= await Books.find(filter);
         res.status(200).json(books);
     }catch(err){
         res.status(500).json({message:err.message});
