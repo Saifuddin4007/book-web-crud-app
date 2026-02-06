@@ -33,6 +33,26 @@ app.get('/api/books', async (req,res)=>{
     }
 })
 
+
+
+app.get('/api/books/:slug', async (req,res)=>{
+    try{
+
+        const slug= req.params.slug;
+        const book= await Books.find({slug:slug});
+        if(!book){
+            return res.status(404).json({message:"Something went wrong. Book not found"});
+        }
+    
+        res.status(200).json(book);
+    }catch(err){
+        res.status(500).json({message:err.message});
+    }
+})
+
+
+
+
 app.get('/',(req,res)=>{
     res.send("Hello Guys");
 })
