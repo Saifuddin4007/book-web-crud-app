@@ -7,11 +7,11 @@ const bookSchema= new mongoose.Schema({
       },
       "thumbnail":{
             type:String,
-            required:true,
+            required:false,
       },
       "slug":String,
       "description":String,
-      "stars":String,
+      "stars":Number,
       "category": [String],
       "createdAt":{
             type:Date,
