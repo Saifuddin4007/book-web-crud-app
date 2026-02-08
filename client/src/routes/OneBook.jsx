@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
+
+
+function StarRating({rating}){
+        const stars= [];
+        for(let i=0; i<rating; i++){
+            stars.push(<span key={i}>⭐</span>);
+        }
+        return <div>Rating: {stars}</div>;
+    }
+
 const OneBook = () => {
     const [bookData, setBookData] = useState([]);
 
@@ -28,8 +38,11 @@ const OneBook = () => {
 
         fetchBooks();
 
-    }, []);
+    }, [slug]);
 
+
+
+    
      
 
    
@@ -45,7 +58,7 @@ const OneBook = () => {
                     <div className="col-2">
                         <h1>{val.title}</h1>
                         <p>{val.description}</p>
-                        {/* {Stars} */}
+                        <StarRating rating={val.stars} />
                         <p>Category</p>
                         <ul>
                             {val.category.map((ele, ind) => (
