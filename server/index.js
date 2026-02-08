@@ -51,6 +51,32 @@ app.get('/api/books/:slug', async (req,res)=>{
 })
 
 
+app.post('/api/books', async (req,res)=>{
+    try{
+
+        const {title, thumbnail, slug, description, stars, category }= req.body;
+        
+        if(!title || !slug || !description || !stars || !category){
+            return res.json({message:"Please fill all the required fields"});
+        }
+
+        const book= await Books.create({
+            title,
+            slug,
+            description,
+            stars,
+            category,
+        })
+
+        res.status(201).json({message:"Book created successfully", book:book});
+    
+        
+    }catch(err){
+        res.status(500).json({message:err.message});
+    }
+})
+
+
 
 
 app.get('/',(req,res)=>{
