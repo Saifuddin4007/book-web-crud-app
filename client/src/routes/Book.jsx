@@ -43,6 +43,8 @@ const Book = () => {
         <>
             <h1>Books</h1>
 
+            <Link to={'/books/createbook'}>+ Add Book</Link>
+
             <div className='filters'>
                 <label> Categories </label>
                 <select onChange={(e)=>setCategory(e.target.value)}>
