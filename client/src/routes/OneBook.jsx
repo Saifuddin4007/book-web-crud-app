@@ -69,6 +69,7 @@ const OneBook = () => {
                 </div> 
             ))} 
              
+             <Link to={`/books/editbook/${slug}`}>Edit Book</Link>
         </>
     )
 }
